@@ -12,6 +12,9 @@ media
 ### Environments ###
 venv/
 
+## node ###
+package.json
+
 ### ETC ###
 .vscode
 server_info.json
