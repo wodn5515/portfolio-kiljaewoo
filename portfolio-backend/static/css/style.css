@@ -1,0 +1,146 @@
+/*  NAV  */
+
+#nav {
+  position: fixed;
+  top: -100px;
+  left: 0;
+  width: 100vw;
+  height: 80px;
+  z-index: 2;
+  background-color: #333135;
+  transition: all 0.2s ease-in;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: #333135;
+  opacity: 0;
+}
+
+#nav.scroll {
+  background-color: #19181a;
+  border-bottom-color: #8bc2ac;
+  opacity: 1;
+  top: 0;
+}
+
+/*  HOME  */
+
+#home {
+  height: 100vh;
+  display: flex;
+  color: white;
+}
+
+#home #home-bg {
+  background-color: #333135;
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#home .box {
+  z-index: 1;
+}
+
+#home .box .text {
+  font-size: 4vw;
+  line-height: 4vw;
+  margin-bottom: 10px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+#home .box .down-arrow {
+  cursor: pointer;
+}
+
+#home .box .down-arrow path {
+  animation: downarrow 1s infinite;
+}
+
+#home .bubble {
+  position: absolute;
+  font-size: 30px;
+  font-weight: bold;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  box-shadow: inset #8bc2ac 0px 0px 10px 3px;
+}
+
+#home .bubble:hover {
+  cursor: pointer;
+  animation: blinkballoon 1s infinite;
+}
+
+#home .bubble.about {
+  top: 10%;
+  left: 10%;
+}
+
+#home .bubble.skill {
+  top: 10%;
+  right: 10%;
+}
+
+#home .bubble.project {
+  bottom: 10%;
+  left: 10%;
+}
+
+#home .bubble.contact {
+  bottom: 10%;
+  right: 10%;
+}
+
+/*  ABOUT  */
+
+#about {
+  padding: 110px 0;
+  background-color: #f5f5f5;
+}
+
+/*  SKILL  */
+
+#skill {
+  padding: 110px 0;
+  background-color: #dfe1d5;
+}
+
+/*  PROJECT  */
+
+#project {
+  padding: 110px 0;
+  background-color: #f5f5f5;
+}
+
+/*  CONTACT  */
+
+#contact {
+  padding: 110px 0;
+  background-color: #333135;
+}
+#contact svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/*  FOOTER  */
+
+footer {
+  padding: 50px 0;
+  background-color: #19181a;
+}
+
+/*  Keyframes  */
+
+@keyframes downarrow {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(60px);
+  }
+}

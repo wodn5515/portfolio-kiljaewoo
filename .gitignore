@@ -8,13 +8,18 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
+static-dev
 
 ### Environments ###
 venv/
 
+## node ###
+package.json
+
 ### ETC ###
 .vscode
 server_info.json
+.prettierignore
 
 ### Unit test / coverage reports ###
 .coverage
