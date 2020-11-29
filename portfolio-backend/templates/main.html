@@ -1,13 +1,19 @@
 {% extends 'base.html' %} {% block title %}I'm Kil Jaewoo{% endblock %}
 {% block content %}
-<!-- HOME -->
-{% include 'main/home.html' %}
-<!-- ABOUT -->
-{% include 'main/about.html' %}
-<!-- SKILL -->
-{% include 'main/skill.html' %}
-<!-- PROJECT -->
-{% include 'main/project.html' %}
-<!-- CONTACT -->
-{% include 'main/contact.html' %}
+<div id="root">
+  <!-- NAV -->
+  {% include 'main/nav.html' %}
+  <!-- HOME -->
+  {% include 'main/home.html' %}
+  <!-- ABOUT -->
+  {% include 'main/about.html' %}
+  <!-- SKILL -->
+  {% include 'main/skill.html' %}
+  <!-- PROJECT -->
+  {% include 'main/project.html' %}
+  <!-- CONTACT -->
+  {% include 'main/contact.html' %}
+  <!-- FOOTER -->
+  {% include 'footer.html' %}
+</div>
 {% endblock %}
