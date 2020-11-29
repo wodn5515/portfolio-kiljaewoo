@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  background-color: #fff;
+  text-align: center;
+  overflow-x: hidden;
+  font-size: 12px;
+}
+
+em {
+  font-style: normal;
+}
