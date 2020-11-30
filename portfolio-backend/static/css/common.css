@@ -12,6 +12,14 @@
   justify-content: center;
 }
 
+.flex.row {
+  flex-direction: row;
+}
+
+.flex-row-sm {
+  flex-direction: row;
+}
+
 .mw-1200 {
   max-width: 1200px;
   width: 100%;
@@ -21,4 +29,16 @@
 
 section {
   position: relative;
+}
+
+.header {
+  font-size: 30pt;
+  font-weight: bold;
+}
+
+.header-bar {
+  margin: 20px 0px 70px 0;
+  height: 5px;
+  width: 70px;
+  background-color: #19181a;
 }
