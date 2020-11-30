@@ -1,8 +1,22 @@
+.after::after {
+  clear: both;
+  visibility: hidden;
+  display: block;
+  content: "";
+}
+
 .flex {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.mw-1200 {
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 section {
