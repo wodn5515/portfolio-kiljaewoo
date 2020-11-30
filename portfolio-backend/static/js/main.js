@@ -28,8 +28,8 @@ function navOn(){
 }
 
 $(window).scroll(function() {
-    navDropdown();
     navOn();
+    navDropdown();
 });
 
 $('.dest').click(function(event){
