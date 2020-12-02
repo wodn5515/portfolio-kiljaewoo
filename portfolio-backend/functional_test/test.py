@@ -3,8 +3,9 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 import time
 
+
 class FunctionalTest(LiveServerTestCase):
-    chromedriver = './chromedriver'
+    chromedriver = "./chromedriver"
 
     def setUp(self):
         self.browser = webdriver.Chrome(self.chromedriver)
@@ -19,7 +20,6 @@ class FunctionalTest(LiveServerTestCase):
 
         # 웹 페이지 타이틀이
         # "I'm Kil Jaewoo" 를 표시하고 있다.
-        time.sleep(5)
         self.assertEqual("I'm Kil Jaewoo", self.browser.title)
 
         # 개발자에 대해 알아보기 위해

@@ -27,13 +27,30 @@ function navOn(){
     }
 }
 
+function mobNavVisible(){
+    $('#nav ul').toggleClass('visible')
+    $('.mob-menu').toggleClass('on')
+}
+
+function navScroll(event){
+    let destId = $(event.currentTarget).attr('dest');
+    let destScroll = $('#'+destId)[0].offsetTop;
+    $('html, body').animate({scrollTop : destScroll-84}, 400);}
+
 $(window).scroll(function() {
     navOn();
     navDropdown();
 });
 
 $('.dest').click(function(event){
-    let destId = $(event.currentTarget).attr('dest');
-    let destScroll = $('#'+destId)[0].offsetTop;
-    $('html, body').animate({scrollTop : destScroll-84}, 400);
+    mobNavVisible();
+    navScroll(event);
+})
+
+$('.dest-about').click(function(event){
+    navScroll(event);
+})
+
+$('.mob-menu').click(function(event){
+    mobNavVisible();
 })
