@@ -23,6 +23,14 @@
   top: 0;
 }
 
+#nav .box {
+  position: relative;
+}
+
+#nav .box i {
+  display: none;
+}
+
 #nav ul {
   float: left;
   height: 100%;
@@ -85,6 +93,7 @@
 #home .down-arrow path {
   animation: downarrow 1s infinite;
 }
+
 /*  ABOUT  */
 
 #about {
@@ -124,7 +133,7 @@
 }
 
 #skill .skill-wrap .skill {
-  min-width: 300px;
+  min-width: 280px;
   width: 70%;
   margin: 10px 0;
   box-shadow: 2px 2px 2px 0.5px rgba(51, 49, 53, 0.5);
@@ -147,10 +156,15 @@
   font-weight: bold;
 }
 
+#skill .skill-wrap .skill .bar .fill-wrap {
+  width: calc(100% - 100px);
+  float: left;
+  height: 100%;
+}
+
 #skill .skill-wrap .skill .bar .fill {
   background-color: #a4dac5;
   height: 100%;
-  float: left;
 }
 
 #skill .skill-wrap .skill .bar .fill .level {
@@ -158,7 +172,7 @@
   font-weight: bold;
   font-size: 14pt;
   padding: 10px;
-  color: #333135;
+  color: #67616b;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -168,8 +182,8 @@
   position: absolute;
   right: 0;
   top: 0;
-  font-size: 14pt;
-  padding: 10px;
+  font-size: 12pt;
+  padding: 12px;
 }
 
 #skill .skill-wrap .skill .bar:hover .fill .level {
@@ -212,4 +226,72 @@ footer {
     transform: translateY(60px);
     opacity: 0;
   }
+}
+
+/*  반응형  */
+@media screen and (max-width: 600px) {
+  #nav .box i {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 45px;
+    padding: 18px;
+  }
+
+  #nav ul {
+    float: none;
+    width: 100%;
+    z-index: 1;
+    overflow-y: hidden;
+    position: absolute;
+    top: 84px;
+    left: 0;
+    height: 0;
+    transition: height 0.2s ease-in;
+  }
+
+  #nav ul.visible {
+    height: 200px;
+    border-bottom: 2px solid #22cdd5;
+  }
+
+  #nav li {
+    background-color: #58565d;
+    font-weight: bold;
+    float: none;
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    padding: 5px 0;
+    line-height: 30px;
+    cursor: pointer;
+    transition: padding 0.2s ease-in, color 0.2s ease-in;
+  }
+  #nav li:hover {
+    padding: 5px 0;
+    color: #22cdd5;
+  }
+
+  /*  HOME  */
+
+  #home .box .text {
+    font-size: 5vw;
+  }
+
+  /*  ABOUT  */
+
+  /*  SKILL  */
+
+  #skill .skill-wrap .skill {
+    width: 90%;
+  }
+
+  #skill .skill-wrap .skill .bar .percent {
+    padding: 12px 4px;
+  }
+
+  /*  PROJECT  */
+
+  /*  CONTACT  */
 }
