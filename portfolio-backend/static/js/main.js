@@ -27,6 +27,15 @@ function navOn(){
     }
 }
 
+function mobNavVisible(){
+    if($('#nav ul.visible')[0]){
+        $('#nav ul.visible').removeClass('visible')
+    }else{
+        $('#nav ul').addClass('visible')
+    }
+    console.log('asd')
+}
+
 $(window).scroll(function() {
     navOn();
     navDropdown();
@@ -36,4 +45,9 @@ $('.dest').click(function(event){
     let destId = $(event.currentTarget).attr('dest');
     let destScroll = $('#'+destId)[0].offsetTop;
     $('html, body').animate({scrollTop : destScroll-84}, 400);
+    mobNavVisible();
+})
+
+$('.mob-menu').click(function(event){
+    mobNavVisible();
 })
