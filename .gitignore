@@ -16,7 +16,6 @@ venv/
 ### ETC ###
 .vscode
 server_info.json
-.prettierignore
 
 ### Unit test / coverage reports ###
 .coverage
