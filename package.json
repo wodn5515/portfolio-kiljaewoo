@@ -1,0 +1,27 @@
+{
+  "name": "portfoilio",
+  "version": "1.0.0",
+  "description": "portfoilio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -w -d portfolio-backend/static-dev/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wodn5515/portfolio-kiljaewoo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wodn5515/portfolio-kiljaewoo/issues"
+  },
+  "homepage": "https://github.com/wodn5515/portfolio-kiljaewoo#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7"
+  }
+}
