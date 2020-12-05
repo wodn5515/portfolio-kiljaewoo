@@ -27,6 +27,22 @@ class Skill extends React.Component {
 }
 
 class SkillList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: []
+    };
+  }
+
+  componentDidMount() {
+    axios.get("/data/skill").then(res => {
+      const skills = res.data;
+      this.setState({
+        skills
+      });
+    });
+  }
+
   render() {
     return /*#__PURE__*/React.createElement("div", {
       className: "container flex mw-1200"
@@ -36,51 +52,12 @@ class SkillList extends React.Component {
       className: "header-bar"
     }), /*#__PURE__*/React.createElement("div", {
       className: "skill-wrap flex"
-    }, /*#__PURE__*/React.createElement(Skill, {
-      tag: "Python",
-      level: "Intermediate",
-      percent: "70"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "Django",
-      level: "Intermediate",
-      percent: "80"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "Vue.js",
-      level: "Basic",
-      percent: "40"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "React",
-      level: "Basic",
-      percent: "30"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "MySQL",
-      level: "Basic",
-      percent: "40"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "Github",
-      level: "Intermediate",
-      percent: "60"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "AWS",
-      level: "Basic",
-      percent: "30"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "CSS",
-      level: "Intermediate",
-      percent: "80"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "HTML",
-      level: "Intermediate",
-      percent: "80"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "Javascript",
-      level: "Intermediate",
-      percent: "70"
-    }), /*#__PURE__*/React.createElement(Skill, {
-      tag: "JQuery",
-      level: "Intermediate",
-      percent: "70"
-    })));
+    }, this.state.skills.map(skill => /*#__PURE__*/React.createElement(Skill, {
+      key: skill.id,
+      tag: skill.tag,
+      level: skill.level,
+      percent: skill.percent
+    }))));
   }
 
 }
