@@ -1,0 +1,1 @@
+LEVEL_CHOICES = [("B", "Basic"), ("I", "Intermediate"), ("E", "Expert")]
