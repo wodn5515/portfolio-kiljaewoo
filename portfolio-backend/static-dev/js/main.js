@@ -37,10 +37,6 @@ function navScroll(event){
     let destScroll = $('#'+destId)[0].offsetTop;
     $('html, body').animate({scrollTop : destScroll-84}, 400);}
 
-function modalToggle(){
-    $('#modal').toggleClass('visible')
-}
-
 $(window).scroll(function() {
     navOn();
     navDropdown();
@@ -57,8 +53,4 @@ $('.dest-about').click(function(event){
 
 $('.mob-menu').click(function(event){
     mobNavVisible();
-})
-
-$('.project-wrap .more, #modal .mask').click(function(event){
-    modalToggle();
 })
