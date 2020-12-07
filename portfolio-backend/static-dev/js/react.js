@@ -5,8 +5,11 @@ class Skill extends React.Component {
 
   render() {
     return /*#__PURE__*/React.createElement("div", {
-      className: "skill-wrap"
-    }, /*#__PURE__*/React.createElement("div", {
+      className: "skill-wrap flex row"
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "/assets/img/" + this.props.img + ".svg",
+      width: "30px"
+    }), /*#__PURE__*/React.createElement("div", {
       className: "bar"
     }, /*#__PURE__*/React.createElement("em", {
       className: "tag"
@@ -34,57 +37,68 @@ class SkillList extends React.Component {
         "id": 1,
         "level": "Intermediate",
         "tag": "Python",
-        "percent": 70
+        "percent": 70,
+        "img": "python"
       }, {
         "id": 2,
         "level": "Intermediate",
         "tag": "Django",
-        "percent": 80
+        "percent": 80,
+        "img": "django"
       }, {
         "id": 3,
         "level": "Basic",
         "tag": "Vue.js",
-        "percent": 40
+        "percent": 40,
+        "img": "vue-dot-js"
       }, {
         "id": 4,
         "level": "Basic",
         "tag": "React",
-        "percent": 30
+        "percent": 30,
+        "img": "react"
       }, {
         "id": 5,
         "level": "Basic",
         "tag": "MySQL",
-        "percent": 40
+        "percent": 40,
+        "img": "mysql"
       }, {
         "id": 6,
         "level": "Intermediate",
         "tag": "Github",
-        "percent": 60
+        "percent": 60,
+        "img": "github"
       }, {
         "id": 7,
         "level": "Basic",
         "tag": "AWS",
-        "percent": 30
+        "percent": 30,
+        "img": "amazonaws"
       }, {
         "id": 8,
         "level": "Intermediate",
         "tag": "CSS",
-        "percent": 80
+        "percent": 80,
+        "img": "css3"
       }, {
         "id": 9,
         "level": "Intermediate",
         "tag": "HTML",
-        "percent": 80
+        "percent": 80,
+        "img": "html5"
       }, {
         "id": 10,
         "level": "Intermediate",
         "tag": "Javascript",
-        "percent": 70
+        "percent": 70,
+        "img": "javascript"
       }, {
         "id": 11,
         "level": "Intermediate",
         "tag": "JQuery",
-        "percent": 70
+        "percent": 70,
+        "img": "jquery"
       }]
     };
   }
@@ -102,7 +116,8 @@ class SkillList extends React.Component {
       key: skill.id,
       tag: skill.tag,
       level: skill.level,
-      percent: skill.percent
+      percent: skill.percent,
+      img: skill.img
     }))));
   }
 
@@ -126,7 +141,17 @@ class Project extends React.Component {
       className: "skills"
     }, this.props.skill)), /*#__PURE__*/React.createElement("div", {
       className: "more"
-    }, "MORE"));
+    }, /*#__PURE__*/React.createElement("a", {
+      href: this.props.website,
+      target: "_blank"
+    }, /*#__PURE__*/React.createElement("i", {
+      class: "fas fa-home"
+    })), /*#__PURE__*/React.createElement("a", {
+      href: this.props.github,
+      target: "_blank"
+    }, /*#__PURE__*/React.createElement("i", {
+      class: "fab fa-github"
+    }))));
   }
 
 }
@@ -138,11 +163,15 @@ class ProjectList extends React.Component {
       projects: [{
         "id": "1",
         "title": "덕천제일교회",
-        "skill": "Django/JS/MySQL"
+        "skill": "Django/JS/MySQL",
+        "github": "https://github.com/wodn5515/dcjeil",
+        "website": "http://www.dcjeil.net/"
       }, {
         "id": "2",
         "title": "롤 모의밴픽",
-        "skill": "Django/Vue"
+        "skill": "Django/Vue",
+        "github": "https://github.com/wodn5515/banpick",
+        "website": "https://bnpk.kr/"
       }]
     };
   }
@@ -155,11 +184,13 @@ class ProjectList extends React.Component {
     }, "Projects"), /*#__PURE__*/React.createElement("div", {
       className: "header-bar"
     }), /*#__PURE__*/React.createElement("div", {
-      className: "box flex row"
+      className: "box"
     }, this.state.projects.map(project => /*#__PURE__*/React.createElement(Project, {
       key: project.id,
       title: project.title,
-      skill: project.skill
+      skill: project.skill,
+      github: project.github,
+      website: project.website
     }))));
   }
 
