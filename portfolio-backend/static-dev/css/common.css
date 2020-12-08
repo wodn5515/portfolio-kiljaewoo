@@ -16,8 +16,8 @@
   flex-direction: row;
 }
 
-.flex-row-sm {
-  flex-direction: row;
+.flex.top {
+  justify-content: inherit;
 }
 
 .mw-1200 {
