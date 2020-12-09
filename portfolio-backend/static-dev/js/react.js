@@ -7,7 +7,7 @@ class Skill extends React.Component {
     return /*#__PURE__*/React.createElement("div", {
       className: "skill-wrap flex row"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "/assets/img/" + this.props.img + ".svg",
+      src: this.props.icon,
       width: "30px"
     }), /*#__PURE__*/React.createElement("div", {
       className: "bar"
@@ -29,78 +29,43 @@ class Skill extends React.Component {
 
 }
 
+class SkillWrap extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "flex w-100"
+    }, /*#__PURE__*/React.createElement("p", {
+      className: "type"
+    }, this.props.type), this.props.list.map(skill => /*#__PURE__*/React.createElement(Skill, {
+      key: skill.id,
+      tag: skill.tag,
+      level: skill.level,
+      percent: skill.percent,
+      icon: skill.icon
+    })));
+  }
+
+}
+
 class SkillList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      skills: [{
-        "id": 1,
-        "level": "Intermediate",
-        "tag": "Python",
-        "percent": 70,
-        "img": "python"
-      }, {
-        "id": 2,
-        "level": "Intermediate",
-        "tag": "Django",
-        "percent": 80,
-        "img": "django"
-      }, {
-        "id": 3,
-        "level": "Basic",
-        "tag": "Vue.js",
-        "percent": 40,
-        "img": "vue-dot-js"
-      }, {
-        "id": 4,
-        "level": "Basic",
-        "tag": "React",
-        "percent": 30,
-        "img": "react"
-      }, {
-        "id": 5,
-        "level": "Basic",
-        "tag": "MySQL",
-        "percent": 40,
-        "img": "mysql"
-      }, {
-        "id": 6,
-        "level": "Intermediate",
-        "tag": "Github",
-        "percent": 60,
-        "img": "github"
-      }, {
-        "id": 7,
-        "level": "Basic",
-        "tag": "AWS",
-        "percent": 30,
-        "img": "amazonaws"
-      }, {
-        "id": 8,
-        "level": "Intermediate",
-        "tag": "CSS",
-        "percent": 80,
-        "img": "css3"
-      }, {
-        "id": 9,
-        "level": "Intermediate",
-        "tag": "HTML",
-        "percent": 80,
-        "img": "html5"
-      }, {
-        "id": 10,
-        "level": "Intermediate",
-        "tag": "Javascript",
-        "percent": 70,
-        "img": "javascript"
-      }, {
-        "id": 11,
-        "level": "Intermediate",
-        "tag": "JQuery",
-        "percent": 70,
-        "img": "jquery"
-      }]
+      skills: []
     };
+  }
+
+  componentDidMount() {
+    axios.get("/data/skill").then(res => {
+      let skills = res.data;
+      console.log(skills);
+      this.setState({
+        skills
+      });
+    });
   }
 
   render() {
@@ -112,12 +77,10 @@ class SkillList extends React.Component {
       className: "header-bar"
     }), /*#__PURE__*/React.createElement("div", {
       className: "box flex"
-    }, this.state.skills.map(skill => /*#__PURE__*/React.createElement(Skill, {
+    }, this.state.skills.map(skill => /*#__PURE__*/React.createElement(SkillWrap, {
       key: skill.id,
-      tag: skill.tag,
-      level: skill.level,
-      percent: skill.percent,
-      img: skill.img
+      type: skill.skill_type,
+      list: skill.skill
     }))));
   }
 
@@ -145,12 +108,12 @@ class Project extends React.Component {
       href: this.props.website,
       target: "_blank"
     }, /*#__PURE__*/React.createElement("i", {
-      class: "fas fa-home"
+      className: "fas fa-home"
     })), /*#__PURE__*/React.createElement("a", {
       href: this.props.github,
       target: "_blank"
     }, /*#__PURE__*/React.createElement("i", {
-      class: "fab fa-github"
+      className: "fab fa-github"
     }))));
   }
 
