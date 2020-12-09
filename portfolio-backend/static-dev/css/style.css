@@ -140,6 +140,13 @@
   width: 100%;
 }
 
+#skill .box .type {
+  font-size: 20pt;
+  font-weight: bold;
+  color: #19181a;
+  margin: 20px 0 10px 0;
+}
+
 #skill .box .skill-wrap {
   min-width: 280px;
   width: 70%;
@@ -163,7 +170,7 @@
   float: left;
   font-size: 14pt;
   padding: 10px 0;
-  width: 100px;
+  width: 95px;
   background-color: #4ab58c;
   color: #f5f5f5;
   font-weight: bold;
@@ -499,7 +506,7 @@
   /*  SKILL  */
 
   #skill .box .skill-wrap {
-    width: 90%;
+    width: 95%;
   }
 
   #skill .box .skill-wrap .bar .percent {
