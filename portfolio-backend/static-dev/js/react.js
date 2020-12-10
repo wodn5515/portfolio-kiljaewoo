@@ -61,7 +61,6 @@ class SkillList extends React.Component {
   componentDidMount() {
     axios.get("/data/skill").then(res => {
       let skills = res.data;
-      console.log(skills);
       this.setState({
         skills
       });
@@ -123,20 +122,17 @@ class ProjectList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: [{
-        "id": "1",
-        "title": "덕천제일교회",
-        "skill": "Django/JS/MySQL",
-        "github": "https://github.com/wodn5515/dcjeil",
-        "website": "http://www.dcjeil.net/"
-      }, {
-        "id": "2",
-        "title": "롤 모의밴픽",
-        "skill": "Django/Vue",
-        "github": "https://github.com/wodn5515/banpick",
-        "website": "https://bnpk.kr/"
-      }]
+      projects: []
     };
+  }
+
+  componentDidMount() {
+    axios.get("/data/project").then(res => {
+      const projects = res.data;
+      this.setState({
+        projects
+      });
+    });
   }
 
   render() {
@@ -151,9 +147,9 @@ class ProjectList extends React.Component {
     }, this.state.projects.map(project => /*#__PURE__*/React.createElement(Project, {
       key: project.id,
       title: project.title,
-      skill: project.skill,
+      skill: project.skill_used,
       github: project.github,
-      website: project.website
+      website: project.site
     }))));
   }
 
