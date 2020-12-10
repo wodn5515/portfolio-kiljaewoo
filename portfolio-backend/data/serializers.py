@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .models import Skill, SkillType
-from .choices import LEVEL_CHOICES
+from .models import Skill, SkillType, Project
 
 
 class SkillSerializer(serializers.ModelSerializer):
@@ -20,4 +19,10 @@ class SkillTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SkillType
+        fields = "__all__"
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
         fields = "__all__"

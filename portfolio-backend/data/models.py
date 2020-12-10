@@ -9,8 +9,11 @@ def skill_svg(instance, filename):
 
 # Create your models here.
 class Project(models.Model):
-    title = models.CharField(_("프로젝트명"), max_length=50)
-    desc = models.TextField(_("설명"))
+    title = models.CharField(_("프로젝트명"), max_length=50, default="")
+    desc = models.TextField(_("설명"), default="", blank=True)
+    skill_used = models.CharField(_("사용기술"), max_length=50, default="")
+    github = models.CharField(_("깃헙주소"), max_length=255, default="")
+    site = models.CharField(_("사이트주소"), max_length=255, default="")
 
     def __str__(self):
         return f"{self.title}"

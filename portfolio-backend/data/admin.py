@@ -13,3 +13,6 @@ class SkillAdmin(admin.ModelAdmin):
 @admin.register(SkillType)
 class SkillTypeAdmin(admin.ModelAdmin):
     pass
+
+
+admin.site.register(Project)
