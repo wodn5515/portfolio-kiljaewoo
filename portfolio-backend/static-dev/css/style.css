@@ -264,6 +264,7 @@
 #project .box .project-wrap .desc .skills {
   font-size: 16pt;
   color: #22cdd5;
+  font-weight: bold;
 }
 
 #project .box .project-wrap .link {
