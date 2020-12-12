@@ -266,7 +266,7 @@
   color: #22cdd5;
 }
 
-#project .box .project-wrap .more {
+#project .box .project-wrap .link {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -275,11 +275,11 @@
   color: #333135;
   font-size: 16pt;
   opacity: 0;
-  padding: 10px;
+  padding: 5px;
   transition: all 0.2s;
 }
 
-#project .box .project-wrap .more i {
+#project .box .project-wrap .link i {
   color: #333135;
   margin: 5px;
   padding: 10px;
@@ -305,12 +305,12 @@
   animation: fromrighttoleft 0.2s;
 }
 
-#project .box .project-wrap:hover .more {
+#project .box .project-wrap:hover .link {
   opacity: 1;
-  bottom: 10%;
+  bottom: 0%;
 }
 
-#project .box .project-wrap:hover .more i:hover {
+#project .box .project-wrap:hover .link i:hover {
   background-color: #22cdd5;
   color: #f5f5f5;
 }

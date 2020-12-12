@@ -102,7 +102,7 @@ class Project extends React.Component {
     }, this.props.title), /*#__PURE__*/React.createElement("div", {
       className: "skills"
     }, this.props.skill)), /*#__PURE__*/React.createElement("div", {
-      className: "more"
+      className: "link"
     }, /*#__PURE__*/React.createElement("a", {
       href: this.props.website,
       target: "_blank"

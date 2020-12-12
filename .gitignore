@@ -18,7 +18,6 @@ venv/
 server_info.json
 
 ### node ###
-src
 node_modules
 
 ### Unit test / coverage reports ###
