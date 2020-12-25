@@ -5,26 +5,12 @@ class Skill extends React.Component {
 
   render() {
     return /*#__PURE__*/React.createElement("div", {
-      className: "skill-wrap flex row"
+      className: "skill-wrap flex"
     }, /*#__PURE__*/React.createElement("img", {
-      src: this.props.icon,
-      width: "30px"
+      src: this.props.icon
     }), /*#__PURE__*/React.createElement("div", {
-      className: "bar"
-    }, /*#__PURE__*/React.createElement("em", {
       className: "tag"
-    }, this.props.tag), /*#__PURE__*/React.createElement("div", {
-      className: "fill-wrap"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "fill",
-      style: {
-        width: this.props.percent + '%'
-      }
-    }, /*#__PURE__*/React.createElement("em", {
-      className: "level"
-    }, this.props.level))), /*#__PURE__*/React.createElement("em", {
-      className: "percent"
-    }, this.props.percent, "%")));
+    }, this.props.tag));
   }
 
 }
@@ -39,13 +25,15 @@ class SkillWrap extends React.Component {
       className: "flex w-100"
     }, /*#__PURE__*/React.createElement("p", {
       className: "type"
-    }, this.props.type), this.props.list.map(skill => /*#__PURE__*/React.createElement(Skill, {
+    }, this.props.type), /*#__PURE__*/React.createElement("div", {
+      className: "w-100"
+    }, this.props.list.map(skill => /*#__PURE__*/React.createElement(Skill, {
       key: skill.id,
       tag: skill.tag,
       level: skill.level,
       percent: skill.percent,
       icon: skill.icon
-    })));
+    }))));
   }
 
 }

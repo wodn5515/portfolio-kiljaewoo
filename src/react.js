@@ -5,17 +5,9 @@ class Skill extends React.Component {
 
     render() {
         return (
-            <div className="skill-wrap flex row">
-                <img src={this.props.icon} width="30px" />
-                <div className="bar">
-                    <em className="tag">{this.props.tag}</em>
-                    <div className="fill-wrap">
-                        <div className="fill" style={{width: this.props.percent + '%' }}>
-                            <em className="level">{this.props.level}</em>
-                        </div>
-                    </div>
-                    <em className="percent">{this.props.percent}%</em>
-                </div>
+            <div className="skill-wrap flex">
+                <img src={this.props.icon}/>
+                <div className="tag">{this.props.tag}</div>
             </div>
         )
     }
@@ -30,7 +22,9 @@ class SkillWrap extends React.Component {
         return (
             <div className="flex w-100">
                 <p className="type">{this.props.type}</p>
-                {this.props.list.map((skill) => <Skill key={skill.id} tag={skill.tag} level={skill.level} percent={skill.percent} icon={skill.icon} />)}
+                <div className="w-100">
+                    {this.props.list.map((skill) => <Skill key={skill.id} tag={skill.tag} level={skill.level} percent={skill.percent} icon={skill.icon} />)}
+                </div>
             </div>
         )
     }
