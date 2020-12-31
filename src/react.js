@@ -72,6 +72,7 @@ class Project extends React.Component {
                     <div className="title">{this.props.title}</div>
                     <div className="skills">{this.props.skill}</div>
                 </div>
+                <div className="more" onClick={this.props.modal}>More</div>
                 <div className="link">
                     <a href={this.props.website} target="_blank">
                         <i className="fas fa-home"></i>
@@ -85,12 +86,28 @@ class Project extends React.Component {
     }
 }
 
+class Modal extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div id="modal">
+                <div id="modal_bg" onClick={this.props.modal}></div>
+            </div>
+        )
+    }
+}
+
 class ProjectList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            projects: []
+            projects: [],
+            modal: false
         }
+        this.modal = this.modal.bind(this);
     }
 
     componentDidMount() {
@@ -100,6 +117,10 @@ class ProjectList extends React.Component {
                 this.setState({projects})
             })
     }
+
+    modal() {
+        this.setState({modal: !this.state.modal})
+    }
     
     render() {
         return (
@@ -107,8 +128,9 @@ class ProjectList extends React.Component {
               <div className="header">Projects</div>
               <div className="header-bar"></div>
               <div className="box">
-                    {this.state.projects.map((project) => <Project key={project.id} title={project.title} skill={project.skill_used} github={project.github} website={project.site} />)}
+                    {this.state.projects.map((project) => <Project key={project.id} title={project.title} skill={project.skill_used} github={project.github} website={project.site} modal={this.modal} />)}
               </div>
+              {this.state.modal ? <Modal modal={this.modal} /> : null}
             </div>
         )
     }

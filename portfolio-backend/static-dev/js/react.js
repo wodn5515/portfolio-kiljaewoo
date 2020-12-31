@@ -90,6 +90,9 @@ class Project extends React.Component {
     }, this.props.title), /*#__PURE__*/React.createElement("div", {
       className: "skills"
     }, this.props.skill)), /*#__PURE__*/React.createElement("div", {
+      className: "more",
+      onClick: this.props.modal
+    }, "More"), /*#__PURE__*/React.createElement("div", {
       className: "link"
     }, /*#__PURE__*/React.createElement("a", {
       href: this.props.website,
@@ -106,12 +109,30 @@ class Project extends React.Component {
 
 }
 
+class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return /*#__PURE__*/React.createElement("div", {
+      id: "modal"
+    }, /*#__PURE__*/React.createElement("div", {
+      id: "modal_bg",
+      onClick: this.props.modal
+    }));
+  }
+
+}
+
 class ProjectList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      projects: [],
+      modal: false
     };
+    this.modal = this.modal.bind(this);
   }
 
   componentDidMount() {
@@ -120,6 +141,12 @@ class ProjectList extends React.Component {
       this.setState({
         projects
       });
+    });
+  }
+
+  modal() {
+    this.setState({
+      modal: !this.state.modal
     });
   }
 
@@ -137,8 +164,11 @@ class ProjectList extends React.Component {
       title: project.title,
       skill: project.skill_used,
       github: project.github,
-      website: project.site
-    }))));
+      website: project.site,
+      modal: this.modal
+    }))), this.state.modal ? /*#__PURE__*/React.createElement(Modal, {
+      modal: this.modal
+    }) : null);
   }
 
 }
