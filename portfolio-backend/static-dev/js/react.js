@@ -116,10 +116,13 @@ class Modal extends React.Component {
 
   render() {
     return /*#__PURE__*/React.createElement("div", {
-      id: "modal"
+      id: "modal",
+      className: "flex"
     }, /*#__PURE__*/React.createElement("div", {
-      id: "modal_bg",
+      id: "modal-bg",
       onClick: this.props.modal
+    }), /*#__PURE__*/React.createElement("div", {
+      id: "project-detail"
     }));
   }
 

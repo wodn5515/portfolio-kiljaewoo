@@ -93,8 +93,9 @@ class Modal extends React.Component {
 
     render() {
         return (
-            <div id="modal">
-                <div id="modal_bg" onClick={this.props.modal}></div>
+            <div id="modal" className="flex">
+                <div id="modal-bg" onClick={this.props.modal}></div>
+                <div id="project-detail"></div>
             </div>
         )
     }
