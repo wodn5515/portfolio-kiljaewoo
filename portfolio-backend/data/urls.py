@@ -8,4 +8,5 @@ project = views.ProjectList.as_view({"get": "list"})
 urlpatterns = [
     path("skill", skill, name="skill"),
     path("project", project, name="project"),
+    path("project/<str:pk>", views.ProjectDetail.as_view(), name="projectdetail")
 ]

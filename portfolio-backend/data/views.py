@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.http import Http404
 from rest_framework import viewsets
+from rest_framework import views
 from rest_framework.response import Response
 from rest_framework.filters import OrderingFilter
 from .models import Skill, SkillType, Project
@@ -26,3 +28,16 @@ class ProjectList(viewsets.ModelViewSet):
 
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+class ProjectDetail(views.APIView):
+
+    def get_object(self, pk):
+        try:
+            return Project.objects.get(pk=pk)
+        except:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        project = self.get_object(pk)
+        serializer = ProjectSerializer(project)
+        return Response(serializer.data)
