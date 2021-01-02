@@ -72,7 +72,7 @@ class Project extends React.Component {
                     <div className="title">{this.props.title}</div>
                     <div className="skills">{this.props.skill}</div>
                 </div>
-                <div className="more" onClick={this.props.modal}>More</div>
+                <div className="more" onClick={this.props.projectmore.bind(this, this.props.pk)}>More</div>
                 <div className="link">
                     <a href={this.props.website} target="_blank">
                         <i className="fas fa-home"></i>
@@ -81,6 +81,20 @@ class Project extends React.Component {
                         <i className="fab fa-github"></i>
                     </a>
                 </div>
+            </div>
+        )
+    }
+}
+
+class ProjectDetail extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div id="project-detail">
+                {this.props.project.desc}
             </div>
         )
     }
@@ -95,7 +109,7 @@ class Modal extends React.Component {
         return (
             <div id="modal" className="flex">
                 <div id="modal-bg" onClick={this.props.modal}></div>
-                <div id="project-detail"></div>
+                <ProjectDetail project={this.props.project} />
             </div>
         )
     }
@@ -106,9 +120,11 @@ class ProjectList extends React.Component {
         super(props);
         this.state = {
             projects: [],
-            modal: false
+            modal: false,
+            project: {}
         }
         this.modal = this.modal.bind(this);
+        this.projectMore = this.projectMore.bind(this);
     }
 
     componentDidMount() {
@@ -122,6 +138,15 @@ class ProjectList extends React.Component {
     modal() {
         this.setState({modal: !this.state.modal})
     }
+
+    projectMore(pk) {
+        axios.get("/data/project/"+pk)
+            .then(res => {
+                let project = res.data;
+                this.setState({project});
+            })
+        this.modal();
+    }
     
     render() {
         return (
@@ -129,9 +154,9 @@ class ProjectList extends React.Component {
               <div className="header">Projects</div>
               <div className="header-bar"></div>
               <div className="box">
-                    {this.state.projects.map((project) => <Project key={project.id} title={project.title} skill={project.skill_used} github={project.github} website={project.site} modal={this.modal} />)}
+                    {this.state.projects.map((project) => <Project key={project.id} title={project.title} pk={project.id} skill={project.skill_used} github={project.github} website={project.site} modal={this.modal} projectmore={this.projectMore} />)}
               </div>
-              {this.state.modal ? <Modal modal={this.modal} /> : null}
+              {this.state.modal ? <Modal modal={this.modal} project={this.state.project} /> : null}
             </div>
         )
     }

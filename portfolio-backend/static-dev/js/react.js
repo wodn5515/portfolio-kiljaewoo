@@ -91,7 +91,7 @@ class Project extends React.Component {
       className: "skills"
     }, this.props.skill)), /*#__PURE__*/React.createElement("div", {
       className: "more",
-      onClick: this.props.modal
+      onClick: this.props.projectmore.bind(this, this.props.pk)
     }, "More"), /*#__PURE__*/React.createElement("div", {
       className: "link"
     }, /*#__PURE__*/React.createElement("a", {
@@ -109,6 +109,19 @@ class Project extends React.Component {
 
 }
 
+class ProjectDetail extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return /*#__PURE__*/React.createElement("div", {
+      id: "project-detail"
+    }, this.props.project.desc);
+  }
+
+}
+
 class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -121,8 +134,8 @@ class Modal extends React.Component {
     }, /*#__PURE__*/React.createElement("div", {
       id: "modal-bg",
       onClick: this.props.modal
-    }), /*#__PURE__*/React.createElement("div", {
-      id: "project-detail"
+    }), /*#__PURE__*/React.createElement(ProjectDetail, {
+      project: this.props.project
     }));
   }
 
@@ -133,9 +146,11 @@ class ProjectList extends React.Component {
     super(props);
     this.state = {
       projects: [],
-      modal: false
+      modal: false,
+      project: {}
     };
     this.modal = this.modal.bind(this);
+    this.projectMore = this.projectMore.bind(this);
   }
 
   componentDidMount() {
@@ -153,6 +168,16 @@ class ProjectList extends React.Component {
     });
   }
 
+  projectMore(pk) {
+    axios.get("/data/project/" + pk).then(res => {
+      let project = res.data;
+      this.setState({
+        project
+      });
+    });
+    this.modal();
+  }
+
   render() {
     return /*#__PURE__*/React.createElement("div", {
       className: "container flex mw-1200"
@@ -165,12 +190,15 @@ class ProjectList extends React.Component {
     }, this.state.projects.map(project => /*#__PURE__*/React.createElement(Project, {
       key: project.id,
       title: project.title,
+      pk: project.id,
       skill: project.skill_used,
       github: project.github,
       website: project.site,
-      modal: this.modal
+      modal: this.modal,
+      projectmore: this.projectMore
     }))), this.state.modal ? /*#__PURE__*/React.createElement(Modal, {
-      modal: this.modal
+      modal: this.modal,
+      project: this.state.project
     }) : null);
   }
 
