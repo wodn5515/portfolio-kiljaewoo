@@ -8,6 +8,7 @@ class Skill extends React.Component {
             <div className="skill-wrap flex">
                 <img src={this.props.icon}/>
                 <div className="tag">{this.props.tag}</div>
+                <div className="level flex">{this.props.level}</div>
             </div>
         )
     }
@@ -70,7 +71,7 @@ class Project extends React.Component {
                 <div className="thumbnail"></div>
                 <div className="desc">
                     <div className="title">{this.props.title}</div>
-                    <div className="skills">{this.props.skill}</div>
+                    <div className="skills">{this.props.mainSkill.join("/")}</div>
                 </div>
                 <div className="more" onClick={this.props.projectmore.bind(this, this.props.pk)}>More</div>
                 <div className="link">
@@ -94,7 +95,15 @@ class ProjectDetail extends React.Component {
     render() {
         return (
             <div id="project-detail">
-                {this.props.project.desc}
+                <i className="fas fa-times" onClick={this.props.modal}></i>
+                <div className="title">{this.props.project.title}
+                    <div className="term">{this.props.project.term}</div>
+                </div>
+                <div className="skill">
+                    <div className="main-skill">{this.props.project.main_skill_used ? this.props.project.main_skill_used.map((skill, index) => <em key={index}>{skill}</em>) : null}</div>
+                    <div className="sub-skill">{this.props.project.sub_skill_used ? this.props.project.sub_skill_used.map((skill, index) => <em key={index}>{skill}</em>) : null}</div>
+                </div>
+                <div className="desc">{this.props.project.desc}</div>
             </div>
         )
     }
@@ -107,10 +116,10 @@ class Modal extends React.Component {
 
     render() {
         return (
-            <div id="modal" className="flex">
+            <>
                 <div id="modal-bg" onClick={this.props.modal}></div>
-                <ProjectDetail project={this.props.project} />
-            </div>
+                <ProjectDetail modal={this.props.modal} project={this.props.project} />
+            </>
         )
     }
 }
@@ -120,7 +129,7 @@ class ProjectList extends React.Component {
         super(props);
         this.state = {
             projects: [],
-            modal: false,
+            modalOpen: false,
             project: {}
         }
         this.modal = this.modal.bind(this);
@@ -136,7 +145,7 @@ class ProjectList extends React.Component {
     }
 
     modal() {
-        this.setState({modal: !this.state.modal})
+        this.setState({modalOpen: !this.state.modalOpen})
     }
 
     projectMore(pk) {
@@ -154,9 +163,11 @@ class ProjectList extends React.Component {
               <div className="header">Projects</div>
               <div className="header-bar"></div>
               <div className="box">
-                    {this.state.projects.map((project) => <Project key={project.id} title={project.title} pk={project.id} skill={project.skill_used} github={project.github} website={project.site} modal={this.modal} projectmore={this.projectMore} />)}
+                    {this.state.projects.map((project) => <Project key={project.id} title={project.title} pk={project.id} mainSkill={project.main_skill_used} github={project.github} website={project.site} modal={this.modal} projectmore={this.projectMore} />)}
               </div>
-              {this.state.modal ? <Modal modal={this.modal} project={this.state.project} /> : null}
+              <div id="modal" className={this.state.modalOpen ? "show flex" : "flex"} >
+                <Modal modal={this.modal} project={this.state.project} />
+              </div>
             </div>
         )
     }

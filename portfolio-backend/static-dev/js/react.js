@@ -10,7 +10,9 @@ class Skill extends React.Component {
       src: this.props.icon
     }), /*#__PURE__*/React.createElement("div", {
       className: "tag"
-    }, this.props.tag));
+    }, this.props.tag), /*#__PURE__*/React.createElement("div", {
+      className: "level flex"
+    }, this.props.level));
   }
 
 }
@@ -89,7 +91,7 @@ class Project extends React.Component {
       className: "title"
     }, this.props.title), /*#__PURE__*/React.createElement("div", {
       className: "skills"
-    }, this.props.skill)), /*#__PURE__*/React.createElement("div", {
+    }, this.props.mainSkill.join("/"))), /*#__PURE__*/React.createElement("div", {
       className: "more",
       onClick: this.props.projectmore.bind(this, this.props.pk)
     }, "More"), /*#__PURE__*/React.createElement("div", {
@@ -117,7 +119,26 @@ class ProjectDetail extends React.Component {
   render() {
     return /*#__PURE__*/React.createElement("div", {
       id: "project-detail"
-    }, this.props.project.desc);
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fas fa-times",
+      onClick: this.props.modal
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "title"
+    }, this.props.project.title, /*#__PURE__*/React.createElement("div", {
+      className: "term"
+    }, this.props.project.term)), /*#__PURE__*/React.createElement("div", {
+      className: "skill"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "main-skill"
+    }, this.props.project.main_skill_used ? this.props.project.main_skill_used.map((skill, index) => /*#__PURE__*/React.createElement("em", {
+      key: index
+    }, skill)) : null), /*#__PURE__*/React.createElement("div", {
+      className: "sub-skill"
+    }, this.props.project.sub_skill_used ? this.props.project.sub_skill_used.map((skill, index) => /*#__PURE__*/React.createElement("em", {
+      key: index
+    }, skill)) : null)), /*#__PURE__*/React.createElement("div", {
+      className: "desc"
+    }, this.props.project.desc));
   }
 
 }
@@ -128,13 +149,11 @@ class Modal extends React.Component {
   }
 
   render() {
-    return /*#__PURE__*/React.createElement("div", {
-      id: "modal",
-      className: "flex"
-    }, /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       id: "modal-bg",
       onClick: this.props.modal
     }), /*#__PURE__*/React.createElement(ProjectDetail, {
+      modal: this.props.modal,
       project: this.props.project
     }));
   }
@@ -146,7 +165,7 @@ class ProjectList extends React.Component {
     super(props);
     this.state = {
       projects: [],
-      modal: false,
+      modalOpen: false,
       project: {}
     };
     this.modal = this.modal.bind(this);
@@ -164,7 +183,7 @@ class ProjectList extends React.Component {
 
   modal() {
     this.setState({
-      modal: !this.state.modal
+      modalOpen: !this.state.modalOpen
     });
   }
 
@@ -191,15 +210,18 @@ class ProjectList extends React.Component {
       key: project.id,
       title: project.title,
       pk: project.id,
-      skill: project.skill_used,
+      mainSkill: project.main_skill_used,
       github: project.github,
       website: project.site,
       modal: this.modal,
       projectmore: this.projectMore
-    }))), this.state.modal ? /*#__PURE__*/React.createElement(Modal, {
+    }))), /*#__PURE__*/React.createElement("div", {
+      id: "modal",
+      className: this.state.modalOpen ? "show flex" : "flex"
+    }, /*#__PURE__*/React.createElement(Modal, {
       modal: this.modal,
       project: this.state.project
-    }) : null);
+    })));
   }
 
 }
