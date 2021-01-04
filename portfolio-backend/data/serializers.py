@@ -23,6 +23,9 @@ class SkillTypeSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
+    main_skill_used = serializers.StringRelatedField(many=True)
+    sub_skill_used = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = Project
         fields = "__all__"

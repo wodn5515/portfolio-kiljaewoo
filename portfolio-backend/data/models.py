@@ -8,17 +8,6 @@ def skill_svg(instance, filename):
 
 
 # Create your models here.
-class Project(models.Model):
-    title = models.CharField(_("프로젝트명"), max_length=50, default="")
-    desc = models.TextField(_("설명"), default="", blank=True)
-    skill_used = models.CharField(_("사용기술"), max_length=50, default="")
-    github = models.CharField(_("깃헙주소"), max_length=255, default="")
-    site = models.CharField(_("사이트주소"), max_length=255, default="")
-
-    def __str__(self):
-        return f"{self.title}"
-
-
 class SkillType(models.Model):
     skill_type = models.CharField(_("기술 구분"), max_length=20, choices=TYPE_CHOICES)
 
@@ -28,7 +17,7 @@ class SkillType(models.Model):
 
 class Skill(models.Model):
     tag = models.CharField(_("기술명"), max_length=50, default="")
-    level = models.CharField(_("수준"), max_length=50, default="B", choices=LEVEL_CHOICES)
+    level = models.CharField(_("수준"), max_length=50, default="T", choices=LEVEL_CHOICES)
     percent = models.IntegerField(_("역량퍼센트"), default=0)
     icon = models.FileField(_("SVG 아이콘파일"), null=True, blank=True, upload_to=skill_svg)
     skill_type = models.ForeignKey(
@@ -41,3 +30,17 @@ class Skill(models.Model):
 
     def __str__(self):
         return f"{self.tag}"
+
+
+class Project(models.Model):
+    title = models.CharField(_("프로젝트명"), max_length=50, default="")
+    desc = models.TextField(_("설명"), default="", blank=True)
+    main_skill_used = models.ManyToManyField(Skill, verbose_name=_("주사용기술"), related_name="main_skill")
+    sub_skill_used = models.ManyToManyField(Skill, verbose_name=_("보조사용기술"), related_name="sub_skill")
+    github = models.CharField(_("깃헙주소"), max_length=255, default="")
+    site = models.CharField(_("사이트주소"), max_length=255, default="")
+    term = models.CharField(_("기간"), max_length=50, default="")
+
+    def __str__(self):
+        return f"{self.title}"
+
