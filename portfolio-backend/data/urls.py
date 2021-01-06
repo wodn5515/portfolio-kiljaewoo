@@ -1,12 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+from rest_framework import routers
+from .api import SkillViewset, ProjectViewset
 
-skill = views.SkillList.as_view({"get": "list"})
-project = views.ProjectList.as_view({"get": "list"})
+router = routers.DefaultRouter()
+router.register("skills", SkillViewset, "skills")
+router.register("projects", ProjectViewset, "projects")
 
-urlpatterns = [
-    path("skill", skill, name="skill"),
-    path("project", project, name="project"),
-    path("project/<str:pk>", views.ProjectDetail.as_view(), name="projectdetail")
-]
+urlpatterns = router.urls
