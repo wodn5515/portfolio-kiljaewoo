@@ -39,7 +39,7 @@ class SkillList extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("/data/skill")
+        axios.get("/data/skills")
             .then(res => {
                 let skills = res.data;
                 this.setState({skills})
@@ -137,7 +137,7 @@ class ProjectList extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("/data/project")
+        axios.get("/data/projects")
             .then(res => {
                 const projects = res.data;
                 this.setState({projects})
@@ -149,7 +149,7 @@ class ProjectList extends React.Component {
     }
 
     projectMore(pk) {
-        axios.get("/data/project/"+pk)
+        axios.get("/data/projects/"+pk)
             .then(res => {
                 let project = res.data;
                 this.setState({project});
