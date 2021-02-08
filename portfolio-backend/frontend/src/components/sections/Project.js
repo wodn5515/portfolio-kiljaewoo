@@ -29,12 +29,16 @@ class Project extends Component {
               More
             </div>
             <div className="link">
-              <a href={project.site} target="_blank">
-                <i className="fas fa-home"></i>
-              </a>
-              <a href={project.github} target="_blank">
-                <i className="fab fa-github"></i>
-              </a>
+              {project.site ? (
+                <a href={project.site} target="_blank">
+                  <i className="fas fa-home"></i>
+                </a>
+              ) : null}
+              {project.github ? (
+                <a href={project.github} target="_blank">
+                  <i className="fab fa-github"></i>
+                </a>
+              ) : null}
             </div>
           </div>
         ))}
