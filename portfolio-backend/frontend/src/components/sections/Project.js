@@ -29,7 +29,7 @@ class Project extends Component {
               More
             </div>
             <div className="link">
-              <a href={project.website} target="_blank">
+              <a href={project.site} target="_blank">
                 <i className="fas fa-home"></i>
               </a>
               <a href={project.github} target="_blank">
