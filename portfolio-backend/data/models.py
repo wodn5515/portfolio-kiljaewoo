@@ -38,8 +38,8 @@ class Project(models.Model):
     thumbnail = models.ImageField(_("썸네일"), null=True)
     main_skill_used = models.ManyToManyField(Skill, verbose_name=_("주사용기술"), related_name="main_skill")
     sub_skill_used = models.ManyToManyField(Skill, verbose_name=_("보조사용기술"), related_name="sub_skill")
-    github = models.CharField(_("깃헙주소"), max_length=255, default="")
-    site = models.CharField(_("사이트주소"), max_length=255, default="")
+    github = models.CharField(_("깃헙주소"), max_length=255, default="", blank=True)
+    site = models.CharField(_("사이트주소"), max_length=255, default="", blank=True)
     term = models.CharField(_("기간"), max_length=50, default="")
 
     def __str__(self):
