@@ -12,7 +12,7 @@ class SkillAdmin(admin.ModelAdmin):
 
 @admin.register(SkillType)
 class SkillTypeAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("skill_type",)
 
 
 admin.site.register(Project)
